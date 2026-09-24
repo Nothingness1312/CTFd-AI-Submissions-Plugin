@@ -1,0 +1,124 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<h1>AI Submissions</h1>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<form method="GET" class="form-inline mb-3">
+				<div class="form-group mr-2">
+					<select name="type" class="form-control custom-select">
+						<option value="" {% if not type %}selected{% endif %}>All Types</option>
+						<option value="correct" {% if type == 'correct' %}selected{% endif %}>Correct</option>
+						<option value="incorrect" {% if type == 'incorrect' %}selected{% endif %}>Incorrect</option>
+						<option value="partial" {% if type == 'partial' %}selected{% endif %}>Partial</option>
+						<option value="ratelimited" {% if type == 'ratelimited' %}selected{% endif %}>Ratelimited</option>
+					</select>
+				</div>
+				<div class="form-group mr-2">
+					<input type="text" class="form-control" name="q" placeholder="Search AI Link, flag, user, challenge..."
+					       value="{{ q or '' }}">
+				</div>
+				<button type="submit" class="btn btn-primary mr-2">Search</button>
+				<a href="{{ request.script_root }}/admin/ai-submissions" class="btn btn-outline-secondary">Reset</a>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<td><b>ID</b></td>
+					<td><b>User</b></td>
+					<td><b>Team</b></td>
+					<td><b>Challenge</b></td>
+					<td><b>Type</b></td>
+					<td><b>Provided</b></td>
+					<td><b>AI Link</b></td>
+					<td><b>Date</b></td>
+				</tr>
+				</thead>
+				<tbody>
+				{% for ai in submissions %}
+					<tr>
+						<td>{{ ai.submission.id }}</td>
+						<td>
+							{% if ai.submission.user_id %}
+								<a href="{{ request.script_root }}/admin/users/{{ ai.submission.user_id }}">
+									{{ ai.submission.user.name }}
+								</a>
+							{% else %}
+								-
+							{% endif %}
+						</td>
+						<td>
+							{% if ai.submission.team_id %}
+								<a href="{{ request.script_root }}/admin/teams/{{ ai.submission.team_id }}">
+									{{ ai.submission.team.name }}
+								</a>
+							{% else %}
+								-
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ request.script_root }}/admin/challenges/{{ ai.submission.challenge_id }}">
+								{{ ai.submission.challenge.name }}
+							</a>
+						</td>
+						<td>{{ ai.submission.type }}</td>
+						<td style="word-break: break-all;">{{ ai.submission.provided }}</td>
+						<td style="word-break: break-all;">{{ ai.value }}</td>
+						<td>{{ ai.date }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8" class="text-center">No AI submissions found.</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	{% if pagination.pages > 1 %}
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<nav aria-label="AI submissions pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+							<a class="page-link"
+							   href="{{ request.script_root }}/admin/ai-submissions?page={{ pagination.prev_num }}&type={{ type or '' }}&q={{ q or '' }}">
+								&laquo; Previous
+							</a>
+						</li>
+						{% for p in pagination.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+							{% if p %}
+								<li class="page-item {% if p == pagination.page %}active{% endif %}">
+									<a class="page-link"
+									   href="{{ request.script_root }}/admin/ai-submissions?page={{ p }}&type={{ type or '' }}&q={{ q or '' }}">
+										{{ p }}
+									</a>
+								</li>
+							{% else %}
+								<li class="page-item disabled"><span class="page-link">…</span></li>
+							{% endif %}
+						{% endfor %}
+						<li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+							<a class="page-link"
+							   href="{{ request.script_root }}/admin/ai-submissions?page={{ pagination.next_num }}&type={{ type or '' }}&q={{ q or '' }}">
+								Next &raquo;
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	{% endif %}
+</div>
+{% endblock %}
