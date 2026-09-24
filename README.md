@@ -12,11 +12,11 @@ Designed to enforce competition rules: participants must include the **URL of th
 
 ## Preview
 
-AI Link field in the Challenge Modal (Pixo theme)
+AI Link field in the Challenge Modal (Pixo theme):
 
 ![AI Link field in the Challenge Modal (Pixo theme)](public/preview1.png)
 
-AI Link field in the Challenge Modal when left empty
+AI Link field in the Challenge Modal when left empty:
 
 ![AI Link field in the Challenge Modal when left empty](public/preview2.png)
 
