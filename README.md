@@ -14,15 +14,15 @@ Designed to enforce competition rules: participants must include the **URL of th
 
 AI Link field in the Challenge Modal (Pixo theme)
 
-![AI Link field on challenge modal](public/preview1.png)
+![AI Link field in the Challenge Modal (Pixo theme)](public/preview1.png)
 
 AI Link field in the Challenge Modal when left empty
 
-![AI Link column on Admin Submissions](public/preview2.png)
+![AI Link field in the Challenge Modal when left empty](public/preview2.png)
 
 Admin Review Page:
 
-![AI Link admin review page](public/preview3.png)
+![Admin Review Page:](public/preview3.png)
 
 ---
 
