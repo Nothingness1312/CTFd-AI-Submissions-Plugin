@@ -10,6 +10,22 @@ Dirancang untuk memenuhi aturan kompetisi: peserta wajib menyertakan **URL AI ya
 
 ---
 
+## Preview
+
+Field AI Link\* pada modal challenge (theme pixo):
+
+![Field AI Link di modal challenge](public/preview1.png)
+
+Kolom AI Link pada halaman Admin Submissions:
+
+![Kolom AI Link di Admin Submissions](public/preview2.png)
+
+Halaman review admin:
+
+![Halaman review admin AI Link](public/preview3.png)
+
+---
+
 ## Fitur
 
 - **Backend (theme-agnostic, bekerja di semua theme CTFd):**
@@ -146,6 +162,17 @@ Untuk theme lain: validasi backend berlaku universal. Menampilkan field frontend
 
 ---
 
+## Verifikasi & Riwayat Uji
+
+- **Backend: 22/22 lulus** (TestClient CTFd): validasi 400 bila `ai_link` kosong / URL tidak valid, penyimpanan ke `ai_links` untuk solve+fail+partial+dynamic, skip preview admin, halaman admin 200.
+- **Frontend browser (Playwright, theme pixo): PASS** (field AI Link\* muncul, blokir alert bila kosong, submit dengan AI Link terkirim & tersimpan di DB).
+- **Admin column (Playwright, theme admin): PASS** (kolom **AI Link** muncul di `/admin/submissions` pada view **All / Correct / Incorrect** di samping kolom Provided, terisi dari endpoint JSON plugin).
+- DB dibersihkan sepenuhnya setelah pengujian (submissions test, challenge test, user/team test dihapus; akun & challenge asli utuh).
+
+---
+
 ## Lisensi
 
 Open source di bawah lisensi **MIT**. Silakan pakai, modifikasi, dan distribusikan kembali. File lisensi lengkap: [LICENSE](LICENSE).
+
+Kontribusi via GitHub (issue / pull request) dipersilakan.
