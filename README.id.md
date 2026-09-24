@@ -12,13 +12,13 @@ Dirancang untuk memenuhi aturan kompetisi: peserta wajib menyertakan **URL AI ya
 
 ## Preview
 
-Field AI Link\* pada modal challenge (theme pixo):
+Kolom AI Link pada Modal Challenge (Tema Pixo):
 
-![Field AI Link di modal challenge](public/preview1.png)
+![Kolom AI Link pada Modal Challenge (Tema Pixo)](public/preview1.png)
 
-Kolom AI Link pada halaman Admin Submissions:
+Kolom AI Link pada Modal Challenge jika tidak diisi:
 
-![Kolom AI Link di Admin Submissions](public/preview2.png)
+![Kolom AI Link pada Modal Challenge jika tidak diisi](public/preview2.png)
 
 Halaman review admin:
 
